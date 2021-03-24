@@ -1,0 +1,36 @@
+.image{
+    background-image: url('../../../../assets/images/undraw_begin_chat_c6pj.svg');
+    background-size:contain;
+    background-repeat: no-repeat;
+    height: 60vh;
+    width: 70vw;
+    margin-left: 20%;
+    margin-top: 5%;
+}
+
+h5{
+    color: #1a725b;
+}
+
+
+.add{
+    background-color: #1a725b;
+    color: white;
+    padding: 3px;
+    margin-left: 15%;
+    cursor: pointer;  
+}
+
+td img{
+    height: 50px;
+    width: 50px;
+    border-radius: 100px;
+}
+
+td {
+    text-align: center;
+    justify-content: center;
+}
+form{
+    margin-bottom: 10px;
+}
