@@ -15,7 +15,6 @@ import { ChatHomeComponent } from './components/chat/chat-home/chat-home.compone
 import { ChatRoomComponent } from './components/chat/chat-room/chat-room.component';
 
 import {SocketService} from '../app/services/socket.service';
-import { FilterPipe } from '../app/pipes/filter.pipe';
 
 // const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
@@ -26,8 +25,8 @@ import { FilterPipe } from '../app/pipes/filter.pipe';
     SignupComponent,
     ChatComponent,
     ChatHomeComponent,
-    ChatRoomComponent,
-    FilterPipe
+    ChatRoomComponent
+    
   ],
   imports: [
     BrowserModule,

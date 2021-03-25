@@ -35,6 +35,7 @@ export class ChatHomeComponent implements OnInit {
     this._action.addContact(user,this.id)
     .subscribe((res) => {
       console.log('Successfully added to contact!');
+      alert('Successfully added to contact!');
     })
   }
         

@@ -11,7 +11,7 @@ function router() {
         let room1=req.body.room;
         let room2=req.body.roomalt;
         
-        Messagedata.find({room:room1}||{room:room2}).sort({datefield: 1})
+        Messagedata.find({$or:[{"room":room1},{"room":room2}] }).sort({datefield: 1})
         .then((chats) =>{
             console.log('chats-',chats)
             res.send(chats);

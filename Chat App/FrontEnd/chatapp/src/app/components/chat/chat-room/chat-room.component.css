@@ -75,7 +75,8 @@ img{
 
 
 .contact-message .userHandle .menu{
-    margin-left:81%;
+    margin-left:50%;
+    /* margin-top:-15px; */
     cursor: pointer;
     color:rgb(9, 109, 84);
 }

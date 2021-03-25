@@ -29,7 +29,7 @@ export class ChatComponent implements OnInit {
         }
         username = sessionStorage.getItem('username');
         onlineUserList:User[] =[];
-        contactsList:Array<{name:string,isMuted: boolean, isBlocked: boolean}>  =[];
+        contactsList:Array<{name:string,isMuted: boolean, isBlocked: boolean,image?:string}>  =[];
         userList:any;
         message:string='';
         images:any;

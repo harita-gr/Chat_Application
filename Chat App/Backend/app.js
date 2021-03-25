@@ -94,24 +94,28 @@ io.on('connection', socket => {
                 message:data.message,
                 image:data.image,
                 date:new Date(),
-                room:roomopts[0]
+                room:roomopts[0],
+                isForwarded:data.isForwarded
             }
             var msg=Messagedata(msg);
             msg.save();
             
             io.sockets.in(roomopts[0]).emit('newMessage', data);
         }
-        else if(rooms.includes(roomopts[1])){
+        // else if(rooms.includes(roomopts[1])){
+            else{
             var msg = {
                 to:data.to,
                 from:data.from,
                 message:data.message,
                 image:data.image,
                 //date:new Date(),
-                room:roomopts[1]
+                room:roomopts[1],
+                isForwarded:data.isForwarded
             }
             var msg=Messagedata(msg);
             msg.save();
+            console.log('Saving Message')
             
             io.sockets.in(roomopts[1]).emit('newMessage', data);
         }

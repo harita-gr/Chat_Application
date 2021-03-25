@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import {Moment} from 'moment';  
 
 import {SocketService} from '../../../services/socket.service'
 import {ActionService} from '../../../services/action.service' 
 import {Message} from '../../../classes/message';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { User } from 'src/app/classes/user';
+import * as moment from 'moment';
 
 
 
@@ -34,6 +36,9 @@ export class ChatRoomComponent implements OnInit {
   images:any;
   updatedImage:any;
   newMessage='';
+  forwardedMessage:string='';
+  forwardedImage:any;
+
 
   isBlocked:boolean | undefined;
   isMuted:boolean | undefined;
@@ -64,6 +69,9 @@ export class ChatRoomComponent implements OnInit {
     this._action.loadChatHistory(this.room).subscribe((chats) =>{
       console.log('chats history',chats)
       this.messageArray=JSON.parse(JSON.stringify(chats));
+      this.messageArray.forEach(element => {
+        element.date = moment().format('lll');
+      });
     })
 
     this._socket.listen('newMessage').subscribe((data) =>{   
@@ -74,6 +82,7 @@ export class ChatRoomComponent implements OnInit {
         message:newmsg.message,
         image:newmsg.image,
         room:newmsg.room,
+        isForwarded:false,
         date:(new Date()).toString()
     }
       this.messageArray.push(msg);    
@@ -98,13 +107,13 @@ export class ChatRoomComponent implements OnInit {
                 this.images='';
                 this.updatedImage=res.filename;
                 console.log(this.updatedImage);
-                this._socket.emit('sendMessage', {room: this.room, message:this.newMessage, from: this.username,to:this.toUser,image:this.updatedImage});
+                this._socket.emit('sendMessage', {room: this.room, message:this.newMessage, from: this.username,to:this.toUser,image:this.updatedImage,isForwarded:false});
               },
       (err) => console.log(err)
      )} 
     
      else{
-      this._socket.emit('sendMessage', {room: this.room, message:this.newMessage, from: this.username,to:this.toUser,image:null});
+      this._socket.emit('sendMessage', {room: this.room, message:this.newMessage, from: this.username,to:this.toUser,image:null,isForwarded:false});
      }
   }
 
@@ -154,6 +163,31 @@ export class ChatRoomComponent implements OnInit {
     this._router.navigate(['/chat']);
   }
 
+  saveForwardData(message:any){
+    console.log('Forwarding data..')
+    this.forwardedMessage=message.message;
+    this.forwardedImage=message.image;
+
+  }
+
+  forwardMessage(i:any){
+    console.log('forwarding to..',i.name);
+
+      var room = this.username+i.name;
+      var roomalt=i.name+this.username;
+      var rooms=room+"."+roomalt;
+      this._socket.emit('sendMessage', {room:rooms, message:this.forwardedMessage, from: this.username,to:i.name,image:this.forwardedImage,isForwarded:true});
+      alert('Successfully Forwarded!')
+    };
+  
+
+
+  // saveForwardData(msg:any){
+  //   
+
+
+  // }
+
   // updateMessage(data:any){
   //   this.feedback='';
     
@@ -163,3 +197,5 @@ export class ChatRoomComponent implements OnInit {
 
   // }
 }
+
+

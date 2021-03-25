@@ -113,6 +113,7 @@ authRouter.post('/changeDP/:id',function (req,res){
     console.log('Updating - ', req.body);
     var contact={
       name:req.body.username,
+      image:req.body.image,
       isMuted:false,
       isBlocked:false
     }

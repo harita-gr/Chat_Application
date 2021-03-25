@@ -38,13 +38,14 @@
                     <!-- Contact List -->
                     <div class="contactlist">
                   
-                    <span class="usertypes" (click)="DisplayContacts()">MY CONTACTS</span>  <span class="usertypes" (click)="DisplayOnlineUsers()">AVAILABLE USERS</span>  
+                    <span class="usertypes" (click)="DisplayContacts()">MY CONTACTS</span>  <span class="usertypes" (click)="DisplayOnlineUsers()">ONLINE USERS</span>  
                     <!-- Online Users -->
                     <table class="table table-striped table-hover" *ngIf="displayOnlineUsers">
                         <tbody>
+                          <div *ngIf="onlineUserList.length <=1" class="text-center" style="color: green;">NO USERS ONLINE </div>
                           <tr *ngFor = "let i of onlineUserList" >
                             <div *ngIf="i.username != username" (click)="createRoom(i)" >
-                              <td><img src="http://localhost:3000/uploads/{{i.image}}"></td>
+                              <!-- <td><img src="http://localhost:3000/uploads/{{i.image}}"></td> -->
                               <td style="margin-top:20px;">{{i.username}}</td>
                               <!-- <td><span class="status"></span></td> -->
                             </div>
@@ -54,9 +55,12 @@
                       <!-- Display Contacts -->
                       <table class="table table-striped table-hover" *ngIf="displayMyContacts">
                         <tbody>
+                          <div *ngIf="contactsList.length <1" class="text-center" style="color: green;">NO USERS ONLINE </div>
+
                           <tr *ngFor = "let i of contactsList" >
                             <div *ngIf="!i.isMuted" (click)="createRoomwithContact(i.name)" >
                               <!-- <td><img src="http://localhost:3000/uploads/{{i.image}}"></td> -->
+                              
                               <td style="margin-top:20px;">{{i.name}}</td>
                               <!-- <td><span class="status"></span></td> -->
                             </div>
