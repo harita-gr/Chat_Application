@@ -58,7 +58,7 @@ td img{
 
 .contactlist{
     margin-top:3px;
-    max-height: 100vh !important;
+    max-height: 90vh !important;
     overflow-y: scroll !important;
 }
 

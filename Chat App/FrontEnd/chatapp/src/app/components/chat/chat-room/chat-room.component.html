@@ -26,7 +26,7 @@
           </div><br>
 
           <div class="card contact-message" *ngIf="message.from!=username">
-            <h5 class="card-header userHandle"><b> {{message.from}} &nbsp;</b> <span *ngIf="message.isForwarded"><em>Forwarded</em></span><i class="fas fa-ellipsis-h menu" title="Forward Message"  data-toggle="modal" data-target="#forwardModal"></i> </h5> 
+            <h5 class="card-header userHandle"><b> {{message.from}} &nbsp;</b> <span *ngIf="message.isForwarded"><em>Forwarded</em></span><i class="fas fa-ellipsis-h menu" title="Forward Message"  data-toggle="modal" data-target="#forwardModal" (click)="saveForwardData(message)"></i> </h5> 
             <div class="card-body messageBody">
               <p class="card-text"> {{message.message}}</p> 
               <img src="http://localhost:3000/uploads/{{message.image}}" *ngIf="message.image"> 

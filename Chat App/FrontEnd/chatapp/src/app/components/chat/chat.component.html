@@ -46,7 +46,7 @@
                           <div *ngIf="onlineUserList.length <=1 " class="text-center" style="color: green;">NO USERS ONLINE    </div>
                     
                           <tr *ngFor = "let i of onlineUserList" >
-                            <div *ngIf="i.username != username" (click)="createRoom(i)" >
+                            <div *ngIf="i.user != username" (click)="createRoom(i)" >
                               <!-- <td><img src="http://localhost:3000/uploads/{{i.image}}"></td> -->
                               <td style="margin-top:20px;">{{i.user}}</td>
                               <!-- <td><span class="status"></span></td> -->

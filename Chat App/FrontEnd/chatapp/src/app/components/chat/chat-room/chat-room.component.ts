@@ -164,14 +164,14 @@ export class ChatRoomComponent implements OnInit {
   }
 
   saveForwardData(message:any){
-    console.log('Forwarding data..')
+    console.log('Forwarding data..',message);
     this.forwardedMessage=message.message;
     this.forwardedImage=message.image;
 
   }
 
   forwardMessage(i:any){
-    console.log('forwarding to..',i.name);
+    console.log('forwarding to..',i.name,this.forwardedMessage,this.forwardedImage);
 
       var room = this.username+i.name;
       var roomalt=i.name+this.username;

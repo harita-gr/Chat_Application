@@ -28,7 +28,7 @@ export class ChatComponent implements OnInit {
           contacts:[]
         }
         username = sessionStorage.getItem('username');
-        onlineUserList:User[] =[];
+        onlineUserList:any =[];
         contactsList:Array<{name:string,isMuted: boolean, isBlocked: boolean,image?:string}>  =[];
         userList:any;
         message:string='';
@@ -89,9 +89,9 @@ export class ChatComponent implements OnInit {
     }
 
     createRoom(withUser:any){
-      var room = this.username+withUser.username;
-      var roomalt=withUser.username+this.username;
-      sessionStorage.setItem('toUser',withUser.username);
+      var room = this.username+withUser.user;
+      var roomalt=withUser.user+this.username;
+      sessionStorage.setItem('toUser',withUser.user);
       sessionStorage.setItem('roomName',room+"."+roomalt);
       console.log('Creating room -',room,' with..',withUser);
       this._socket.emit('createRoom',{currentUser:this.username,withUser:withUser,room:room,roomalt:roomalt});
